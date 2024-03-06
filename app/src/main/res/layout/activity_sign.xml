@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blog_bg"
+    tools:context=".Activity.SignInActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/blogText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        app:fontFamily="@font/love_ya_like_a_sister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/shareText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/share_your_story"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:fontFamily="@font/love_ya_like_a_sister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blogText" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shareText">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edit_text_style_login"
+            android:drawableStart="@drawable/email"
+            android:drawableTint="@color/red"
+            android:drawablePadding="20dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:hint="@string/hintEmail"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_style_login"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/red"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:hint="@string/hintPassword"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/love_ya_like_a_sister"
+        android:hint="@string/login"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:text="@string/login"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/love_ya_like_a_sister"
+                android:text="@string/designBy_1"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logInBtn"
+               android:layout_marginTop="80dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

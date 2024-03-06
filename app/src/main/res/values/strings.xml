@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">BLOG.</string>
+
+    <string name="share_your_story">Share your story with us.</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="newHere">New here?</string>
+    <string name="designBy_1">Design by\nNITK</string>
+    <string name="hintName">Enter Your Name</string>
+    <string name="hintEmail">Enter Your Email</string>
+    <string name="hintPassword">Enter Your Password</string>
+    <string name="bloggerTitle">Blogger title</string>
+    <string name="bloggerName">Blogger name </string>
+    <string name="bloggerText">Blogger text here ......</string>
+    <string name="likeText">0</string>
+    <string name="readMore">Read more</string>
+    <string name="date">Feb 25,2024</string>
+    <string name="search">Search...</string>
+
+</resources>

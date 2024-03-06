@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blog_bg"
+    tools:context=".Activity.LoginActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/blogText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textSize="60sp"
+                android:layout_marginTop="90dp"
+                app:fontFamily="@font/love_ya_like_a_sister"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/shareText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/share_your_story"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:fontFamily="@font/love_ya_like_a_sister"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/blogText" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/logInBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_style_login"
+                android:fontFamily="@font/love_ya_like_a_sister"
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/shareText"
+                app:layout_constraintStart_toStartOf="@+id/shareText"
+                app:layout_constraintTop_toBottomOf="@+id/shareText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/newHereText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/love_ya_like_a_sister"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:text="@string/newHere"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@+id/logInBtn"
+                app:layout_constraintStart_toStartOf="@+id/logInBtn"
+                app:layout_constraintTop_toBottomOf="@+id/logInBtn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/love_ya_like_a_sister"
+                android:text="@string/register"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/newHereText"
+                app:layout_constraintStart_toStartOf="@id/newHereText"
+                app:layout_constraintTop_toBottomOf="@id/newHereText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/love_ya_like_a_sister"
+                android:text="@string/designBy_1"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_marginTop="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registerBtn"
+                 />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

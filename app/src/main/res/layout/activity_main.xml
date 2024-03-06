@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/newFeedText"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:text="New Feed"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:fontFamily="@font/montserrat_semibold"
+        app:layout_constraintStart_toEndOf="@id/saveArticleBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/saveArticleBtn"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/save"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toEndOf="@id/newFeedText"
+        app:layout_constraintTop_toTopOf="@id/cardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="18dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profileImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/profile_avtar" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/search_style"
+        android:inputType="text"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/newFeedText"
+        app:layout_constraintTop_toBottomOf="@+id/newFeedText"
+        app:queryHint="Search"
+        app:searchIcon="@drawable/search" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewBlog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/searchBar"
+            app:layout_constraintTop_toBottomOf="@id/searchBar"
+            app:layout_constraintStart_toStartOf="@id/searchBar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
