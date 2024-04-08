@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.WelcomeActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/blog_bg"
@@ -18,12 +18,10 @@
         android:layout_height="wrap_content"
 
         android:scaleType="centerCrop"
-        android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/design"
-
         app:srcCompat="@drawable/logo" />
 
     <androidx.appcompat.widget.AppCompatTextView
