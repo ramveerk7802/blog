@@ -1,17 +1,60 @@
 package com.example.blogapp.Model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class BlogItemModel {
-    private String blogTitle,blogPic,bloggerName,post;
-    private long timeStamp;
+    private String blogTitle,blogPic,bloggerName,post,postId;
+    private String date;
     private int likeCount;
-    public BlogItemModel(){}
-    public BlogItemModel(String blogTitle,String blogPic,String bloggerName,long timeStamp,String post,int likeCount){
+    private String imageView;
+    private Boolean saved,liked;
+
+
+
+    public BlogItemModel(){
+        this.postId =null;
+    }
+//    public BlogItemModel(String blogTitle,String blogPic,String bloggerName,String date,String post,int likeCount,String imageView){
+//        this.blogTitle=blogTitle;
+//        this.blogPic=blogPic;
+//        this.bloggerName=bloggerName;
+//        this.date=date;
+//        this.post =post;
+//        this.likeCount=likeCount;
+//        this.imageView=imageView;
+//        this.postId= postId;
+//    }
+    public BlogItemModel(String blogTitle,String blogPic,String bloggerName,String date,String post,int likeCount,String imageView,boolean saved,boolean liked){
         this.blogTitle=blogTitle;
         this.blogPic=blogPic;
         this.bloggerName=bloggerName;
-        this.timeStamp=timeStamp;
+        this.date=date;
         this.post =post;
         this.likeCount=likeCount;
+        this.imageView=imageView;
+        this.postId=null;
+        this.saved=saved;
+        this.liked=liked;
+
+    }
+
+
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public String getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(String imageView) {
+        this.imageView = imageView;
     }
 
     public String getBlogTitle() {
@@ -46,12 +89,12 @@ public class BlogItemModel {
         this.post = post;
     }
 
-    public Long getTimeStamp() {
-        return timeStamp;
+    public String getDate() {
+        return date;
     }
 
-    public void setTimeStamp(Long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getLikeCount() {
@@ -60,5 +103,21 @@ public class BlogItemModel {
 
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public Boolean getSaved() {
+        return saved;
+    }
+
+    public void setSaved(Boolean saved) {
+        this.saved = saved;
+    }
+
+    public Boolean getLiked() {
+        return liked;
+    }
+
+    public void setLiked(Boolean liked) {
+        this.liked = liked;
     }
 }

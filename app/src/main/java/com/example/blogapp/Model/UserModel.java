@@ -1,23 +1,23 @@
 package com.example.blogapp.Model;
 
 public class UserModel {
-    private String name,email,password,profilePic,userUid;
+    private String displayName,email,password,profilePic,userUid;
     public UserModel(){}
 
-    public UserModel(String name, String email, String password, String profilePic, String userUid) {
-        this.name = name;
+    public UserModel(String displayName, String email, String password, String profilePic, String userUid) {
+        this.displayName = displayName;
         this.email=email;
         this.password = password;
         this.profilePic = profilePic;
         this.userUid = userUid;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getEmail() {

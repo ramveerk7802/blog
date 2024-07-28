@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Dialog dialog;
     private final ActivityResultLauncher galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),result ->{
         if(result !=null){
-            Picasso.get().load(result).placeholder(R.drawable.profile_avtar).into(binding.profilePic);
+            Picasso.get().load(result).into(binding.profilePic);
             imagePath = result;
 
         }
@@ -77,8 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful())
-                                    uploadData();
+                                if(task.isSuccessful()) {
+                                    FirebaseUser user = auth.getCurrentUser();
+                                    updateUI(user);
+                                }
                                 else
                                     Toast.makeText(RegisterActivity.this,task.getException().toString(),Toast.LENGTH_SHORT).show();
                             }
@@ -97,40 +101,52 @@ public class RegisterActivity extends AppCompatActivity {
                 Picasso.get().load(data.getData()).into(binding.profilePic);
         }
     }
-    public void uploadData(){
-        Long time = new Date().getTime();
-        StorageReference reference = storage.getReference().child("profile").child(time.toString());
-        reference.putFile(imagePath)
-                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if(task.isSuccessful()){
-                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    uploadInfo(uri);
-                                }
-                            });
-                        }
+    public void updateUI(FirebaseUser user){
+        if(user!=null){
+            Long time = new Date().getTime();
+            StorageReference reference = storage.getReference().child("profile").child(time.toString());
+            reference.putFile(imagePath)
+                    .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            if(task.isSuccessful()){
+                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        uploadInfo(uri);
+                                    }
+                                });
+                            }
 
-                    }
-                });
+                        }
+                    });
+        }
+        else {
+            Toast.makeText(RegisterActivity.this,"Not Registered",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
     }
     public void uploadInfo(Uri uri){
-        UserModel model = new UserModel();
-        model.setEmail(binding.edtEmail.getText().toString().trim());
-        model.setName(binding.edtName.getText().toString().trim());
-        model.setProfilePic(uri.toString());
-        model.setPassword(binding.edtPassword.getText().toString().trim());
-        model.setUserUid(auth.getUid());
-        database.getReference().child("User").child(auth.getUid()).setValue(model)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                        finish();
+        FirebaseUser currUser = auth.getCurrentUser();
+        if(currUser!=null) {
+            UserModel model = new UserModel();
+            model.setEmail(binding.edtEmail.getText().toString().trim());
+            model.setDisplayName(binding.edtName.getText().toString().trim());
+            model.setProfilePic(uri.toString());
+            model.setPassword(binding.edtPassword.getText().toString().trim());
+            model.setUserUid(currUser.getUid());
+            database.getReference().child("User").child(currUser.getUid()).setValue(model)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Intent main= new Intent(RegisterActivity.this,MainActivity.class);
+                            main.putExtra("profileImageUrl",uri.toString());
+                            startActivity(main);
+                            finish();
 
-                    }
-                });
+                        }
+                    });
+        }
     }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        app:showAsAction="never"
+        android:title="Home"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/nav_new_article"
+        android:title="New Article"
+        app:showAsAction="never"
+        android:icon="@drawable/new_article"/>
+    <item
+        android:id="@+id/nav_your_article"
+        android:title="Your Article"
+        app:showAsAction="never"
+        android:icon="@drawable/my_article"/>
+    <item
+        android:id="@+id/nav_bookmark"
+        android:title="Bookmark"
+        app:showAsAction="never"
+        android:icon="@drawable/bookmark"/>
+    <item
+        android:id="@+id/nav_privacy_and_policy"
+        android:title="Privacy and policy"
+        app:showAsAction="never"
+        android:icon="@drawable/privacy"/>
+    <item
+        android:id="@+id/nav_about"
+        android:title="About"
+        app:showAsAction="never"
+        android:icon="@drawable/about"/>
+    <item
+        android:id="@+id/nav_logout"
+        android:title="logout"
+        app:showAsAction="never"
+        android:icon="@drawable/logout"/>
+
+
+
+
+</menu>

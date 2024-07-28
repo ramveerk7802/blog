@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Activity.ReadMoreActivity">
+    <include
+        android:id="@+id/readMoreToolbarLayout"
+        layout="@layout/general_app_bar_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/blogTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:textSize="23sp"
+        android:layout_marginBottom="5dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/readMoreToolbarLayout"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/bloggerImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blogTitleText"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="Blogger Image"
+        />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/bloggerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/bloggerName"
+        android:textSize="21sp"
+        app:layout_constraintTop_toTopOf="@id/bloggerImage"
+        app:layout_constraintBottom_toBottomOf="@id/bloggerImage"
+        app:layout_constraintStart_toEndOf="@id/bloggerImage"
+        android:layout_marginStart="5dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="2024-03-18"
+        app:layout_constraintBottom_toBottomOf="@id/bloggerName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.90"
+        app:layout_constraintStart_toEndOf="@id/bloggerName"
+        app:layout_constraintTop_toTopOf="@+id/bloggerName" />
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/bloggerImage"
+        app:layout_constraintEnd_toEndOf="@id/dateText"
+        app:layout_constraintTop_toBottomOf="@id/bloggerImage"
+        android:layout_marginTop="3dp"
+        />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/divider"
+            app:layout_constraintStart_toStartOf="@+id/divider"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_bias="0">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/blogDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:lineBreakStyle="normal"
+                android:padding="5dp"
+                android:paddingStart="12dp"
+                android:textSize="18sp" />
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/likeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/like"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintEnd_toEndOf="@id/saveBtn"
+        android:layout_marginBottom="20dp"
+        />
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="Save"
+        app:iconGravity="textStart"
+        app:icon="@drawable/save"
+        app:iconTintMode="src_in"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

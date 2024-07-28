@@ -2,9 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">#ff3838</color>
+<!--    <color name="red">#ff3838</color>-->
+    <color name="red">#eb2f06</color>
     <color name="blue">#17c0eb</color>
     <color name="grey">#f5f6fa</color>
     <color name="dark_gray">#ced6e0</color>
     <color name="green">#009432</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="border_color">#2c3e50</color>
+    <color name="toolbar_color">#8854d0</color>
+    <color name="stroke_color">#FFD700</color>
+    <color name="edit_button_color">#3c6382</color>
 </resources>

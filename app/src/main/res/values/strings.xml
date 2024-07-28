@@ -16,5 +16,10 @@
     <string name="readMore">Read more</string>
     <string name="date">Feb 25,2024</string>
     <string name="search">Search...</string>
+    <string name="addBlogHere">Add new blog here </string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="OpenDrawer">OpenDrawer</string>
+    <string name="CloseDrawer">CloseDrawer</string>
+    <string name="delete_msg">Do you want to remove article !!</string>
 
 </resources>
