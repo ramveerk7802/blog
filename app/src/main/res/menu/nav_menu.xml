@@ -23,11 +23,6 @@
         app:showAsAction="never"
         android:icon="@drawable/bookmark"/>
     <item
-        android:id="@+id/nav_privacy_and_policy"
-        android:title="Privacy and policy"
-        app:showAsAction="never"
-        android:icon="@drawable/privacy"/>
-    <item
         android:id="@+id/nav_about"
         android:title="About"
         app:showAsAction="never"

@@ -27,7 +27,7 @@ public class ReadMoreActivity extends AppCompatActivity {
         setSupportActionBar(binding.readMoreToolbarLayout.generalToolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("");
+            getSupportActionBar().setTitle(R.string.app_name);
         }
         // handle intent pass from your article adaptor
         if(getIntent().getBooleanExtra("from Your Article",false)){

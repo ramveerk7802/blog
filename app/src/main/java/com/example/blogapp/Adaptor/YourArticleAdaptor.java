@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,6 +38,7 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
     private FirebaseDatabase database;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private FirebaseStorage storage;
     private AlertDialog.Builder builder;
     int deletePosition;
     public YourArticleAdaptor(Context context, List<BlogItemModel> list) {
@@ -44,6 +47,7 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
         database= FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
+        storage= FirebaseStorage.getInstance();
     }
 
     @NonNull
@@ -59,12 +63,16 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
         BlogItemModel item = list.get(position);
         int deletePosition = position;
 
+        String originalBloggerName= item.getBloggerName();
+        String originalBlogTitle = item.getBlogTitle();
+        String modifyBlogTitle = originalBlogTitle.substring(0,1).toUpperCase()+originalBlogTitle.substring(1).toLowerCase();
+        String modifyBloggerName = originalBloggerName.substring(0,1).toUpperCase()+originalBloggerName.substring(1).toLowerCase();
         Picasso.get().load(item.getBlogPic()).into(holder.binding.bloggerImg);
         Picasso.get().load(item.getImageView()).into(holder.binding.bloggerImageView);
-        holder.binding.bloggerName.setText(item.getBloggerName());
+        holder.binding.bloggerName.setText(modifyBloggerName);
         holder.binding.bloggerPostText.setText(item.getPost());
         holder.binding.bloggingDate.setText(item.getDate());
-        holder.binding.title.setText(item.getBlogTitle());
+        holder.binding.title.setText(modifyBlogTitle);
 
         // handle the edit button
         holder.binding.edit.setOnClickListener(v -> {
@@ -98,6 +106,9 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteArticle(item.getPostId(), context1,deletePosition);
+                        list.remove(deletePosition);
+                        notifyItemRemoved(deletePosition);
+                        notifyItemRangeChanged(deletePosition,list.size());
                         dialog.dismiss();
 
                         Toast.makeText(holder.binding.getRoot().getContext(),"Article removed successfully",Toast.LENGTH_SHORT).show();
@@ -149,10 +160,22 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
                                                                         .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override
                                                                             public void onSuccess(Void unused) {
-                                                                                list.remove(deletePosition);
-                                                                                notifyItemRemoved(deletePosition);
-                                                                                notifyItemRangeChanged(deletePosition, list.size());
-                                                                                notifyDataSetChanged();
+                                                                                // delete the image
+                                                                                String imageUrl="";
+                                                                                BlogItemModel item = list.get(deletePosition);
+                                                                                if(item!=null)
+                                                                                    imageUrl=item.getImageView();
+                                                                                if(imageUrl!=null && !imageUrl.isEmpty()) {
+                                                                                    StorageReference imageReference = storage.getReferenceFromUrl(imageUrl);
+                                                                                    imageReference.delete()
+                                                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                @Override
+                                                                                                public void onSuccess(Void unused) {
+
+                                                                                                }
+                                                                                            });
+                                                                                }
+
                                                                             }
                                                                         });
 
@@ -173,10 +196,25 @@ public class YourArticleAdaptor extends RecyclerView.Adapter<YourArticleAdaptor.
                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                            @Override
                                                            public void onSuccess(Void unused) {
-                                                               list.remove(deletePosition);
-                                                               notifyItemRemoved(deletePosition);
-                                                               notifyItemRangeChanged(deletePosition, list.size());
-                                                               notifyDataSetChanged();
+                                                               BlogItemModel item = list.get(deletePosition);
+                                                               String imageUrl = "";
+                                                               if(item!=null){
+                                                                   imageUrl= item.getImageView();
+                                                               }
+                                                               if(imageUrl!=null && !imageUrl.isEmpty()){
+                                                                   StorageReference imageRef = storage.getReferenceFromUrl(imageUrl);
+                                                                   imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                       @Override
+                                                                       public void onSuccess(Void unused) {
+                                                                           list.remove(deletePosition);
+                                                                           notifyItemRemoved(deletePosition);
+                                                                           notifyItemRangeChanged(deletePosition, list.size());
+                                                                           notifyDataSetChanged();
+                                                                       }
+                                                                   });
+                                                               }
+
+
 
                                                            }
                                                        });

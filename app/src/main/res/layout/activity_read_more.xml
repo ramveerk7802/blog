@@ -16,6 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="240dp"-->
+<!--        app:cardBackgroundColor="#000000">-->
+<!--        -->
+<!--    </com.google.android.material.card.MaterialCardView>-->
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/blogTitleText"
@@ -32,14 +38,17 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/bloggerImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:src="@drawable/user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/blogTitleText"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:contentDescription="Blogger Image"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/border_color"
+        app:civ_border_overlay="true"
         />
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/bloggerName"

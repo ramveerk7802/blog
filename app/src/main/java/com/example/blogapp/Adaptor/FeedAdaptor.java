@@ -45,6 +45,10 @@ public class FeedAdaptor extends RecyclerView.Adapter<FeedAdaptor.ViewHolder> {
         this.database= FirebaseDatabase.getInstance();
         this.currentUser= FirebaseAuth.getInstance().getCurrentUser();
     }
+    public void setFilteredList(List<BlogItemModel> filteredList){
+        this.list=filteredList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

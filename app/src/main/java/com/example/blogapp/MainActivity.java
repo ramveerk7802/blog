@@ -4,16 +4,22 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.blogapp.Activity.AddBlogActivity;
@@ -26,15 +32,15 @@ import com.example.blogapp.Model.UserModel;
 import com.example.blogapp.databinding.ActivityMainBinding;
 
 import com.example.blogapp.databinding.HeaderLayoutBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
@@ -42,9 +48,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
-import javax.crypto.interfaces.PBEKey;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -67,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         currentUser = auth.getCurrentUser();
+
+        if(currentUser==null){
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+            return;
+        }
 
         // find the id of view
 
@@ -104,13 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 else if(id==R.id.nav_bookmark) {
                     startActivity(new Intent(MainActivity.this, SavedArticleActivity.class));
                 }
-                else if(id==R.id.nav_privacy_and_policy){
-                        Toast.makeText(MainActivity.this,"Clicked on privacy and policy",Toast.LENGTH_SHORT).show();
-                }
                 else if(id==R.id.nav_about) {
                     Toast.makeText(MainActivity.this, "Clicked on About", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    auth.signOut();
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
                     Toast.makeText(MainActivity.this,"Clicked on logout",Toast.LENGTH_SHORT).show();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -133,17 +142,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        if(currentUser==null){
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-            return;
-        }
+
 
         binding.appbarMainLayout.mainContentLayout.recycleViewBlog.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if(dy>0 && isFabExtended){
+
                     binding.appbarMainLayout.mainContentLayout.floatingBtn.shrink();
                     isFabExtended =false;
                 }
@@ -161,10 +167,12 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel model = snapshot.getValue(UserModel.class);
                 if(model.getProfilePic()!=null) {
-                    Picasso.get().load(model.getProfilePic()).into(binding.appbarMainLayout.profileImg);
+//                    Picasso.get().load(model.getProfilePic()).into(binding.appbarMainLayout.profileImg);
                     Picasso.get().load(model.getProfilePic()).into(headerLayoutBinding.headerProfileImg);
                 }
-                headerLayoutBinding.headerUserName.setText(model.getDisplayName());
+                String originalName = model.getDisplayName();
+                String modifyName = originalName.substring(0,1).toUpperCase()+originalName.substring(1).toLowerCase();
+                headerLayoutBinding.headerUserName.setText(modifyName);
                 headerLayoutBinding.headerEmail.setText(model.getEmail());
 
             }
@@ -219,8 +227,56 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        MenuItem searchItem = menu.findItem(R.id.main_menu_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setQueryHint("Search here...");
+
+        // change the edit text color
+
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(Color.WHITE);
+        searchEditText.setHintTextColor(Color.WHITE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
 
 
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id =item.getItemId();
+        if(id==R.id.main_menu_logout){
+            auth.signOut();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void filterList(String newText) {
+        List<BlogItemModel> filteredList= new LinkedList<>();
+        for(BlogItemModel item : list){
+            if(item.getBlogTitle().toLowerCase().contains(newText))
+                filteredList.add(item);
+        }
+        adaptor.setFilteredList(filteredList);
+    }
 
 
 }

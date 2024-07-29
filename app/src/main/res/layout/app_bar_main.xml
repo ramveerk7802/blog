@@ -14,34 +14,37 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right|fill_vertical"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:fitsSystemWindows="true"
-                android:layout_marginRight="10dp">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/search"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    app:srcCompat="@drawable/search"
-                    app:tint="@color/white"
-                    android:layout_marginRight="5dp"
-                    android:layout_gravity="center_vertical"/>
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImg"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/user"
-                    app:civ_border_width="2dp"
-                    app:civ_border_overlay="true"
-                    app:civ_border_color="#e74c3c"
-                    android:layout_gravity="center_vertical"/>
+            android:layout_height="match_parent"
+            app:titleTextColor="@color/white"
+            android:theme="@style/MyThemeOverlay_Toolbar"
+            app:menu="@menu/nav_menu">
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="right|fill_vertical"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="10dp"-->
+<!--                android:fitsSystemWindows="true"-->
+<!--                android:layout_marginRight="10dp">-->
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:id="@+id/search"-->
+<!--                    android:layout_width="35dp"-->
+<!--                    android:layout_height="35dp"-->
+<!--                    app:srcCompat="@drawable/search"-->
+<!--                    app:tint="@color/white"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    android:layout_gravity="center_vertical"/>-->
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/profileImg"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:src="@drawable/user"-->
+<!--                    app:civ_border_width="2dp"-->
+<!--                    app:civ_border_overlay="true"-->
+<!--                    app:civ_border_color="#e74c3c"-->
+<!--                    android:layout_gravity="center_vertical"/>-->
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>

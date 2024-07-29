@@ -14,7 +14,7 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="border_color">#2c3e50</color>
-    <color name="toolbar_color">#8854d0</color>
+    <color name="toolbar_color">#6750A4</color>
     <color name="stroke_color">#FFD700</color>
     <color name="edit_button_color">#3c6382</color>
 </resources>

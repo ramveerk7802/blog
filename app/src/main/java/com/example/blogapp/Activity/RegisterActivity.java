@@ -58,7 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+
+        // handle the dialog
         dialog = new Dialog(RegisterActivity.this);
+        dialog.setContentView(R.layout.dialogboxlayout);
+        dialog.setCancelable(false);
+
 
 
 
@@ -67,12 +72,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
         binding.registerBtn.setOnClickListener(v -> {
+            dialog.show();
             if(TextUtils.isEmpty(binding.edtName.getText().toString().trim()) || TextUtils.isEmpty(binding.edtEmail.getText().toString()
                     .trim()) || TextUtils.isEmpty(binding.edtPassword.getText().toString().trim())){
                 Toast.makeText(RegisterActivity.this,"All field are required !!",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
             else if(imagePath.toString().isEmpty()){
                 Toast.makeText(RegisterActivity.this,"Select the Profile Image",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
             else{
                 auth.createUserWithEmailAndPassword(binding.edtEmail.getText().toString().trim(),binding.edtPassword.getText().toString().trim())
@@ -140,8 +148,8 @@ public class RegisterActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
+                            dialog.dismiss();
                             Intent main= new Intent(RegisterActivity.this,MainActivity.class);
-                            main.putExtra("profileImageUrl",uri.toString());
                             startActivity(main);
                             finish();
 
