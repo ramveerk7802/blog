@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,11 +88,12 @@ public class YourArticleActivity extends AppCompatActivity {
                                 BlogItemModel item = snapshot.getValue(BlogItemModel.class);
                                 if(item!=null) {
                                     list.add(item);
-                                    adaptor.notifyDataSetChanged();
 
                                 }
-
+                                Collections.reverse(list);
+                                adaptor.notifyDataSetChanged();
                             }
+
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {

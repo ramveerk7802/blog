@@ -108,6 +108,7 @@ public class FeedAdaptor extends RecyclerView.Adapter<FeedAdaptor.ViewHolder> {
             intent.putExtra("bloggerImage",model.getBlogPic());
             intent.putExtra("bloggingDate",model.getDate());
             intent.putExtra("bloggerName",model.getBloggerName());
+            intent.putExtra("postId",model.getPostId());
             context.startActivity(intent);
         });
 

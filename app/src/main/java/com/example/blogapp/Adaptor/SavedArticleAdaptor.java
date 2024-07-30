@@ -77,6 +77,7 @@ public class SavedArticleAdaptor extends RecyclerView.Adapter<SavedArticleAdapto
                 intent.putExtra("bloggerImage",model.getBlogPic());
                 intent.putExtra("bloggingDate",model.getDate());
                 intent.putExtra("bloggerName",model.getBloggerName());
+                intent.putExtra("fromBookmark",true);
                 context.startActivity(intent);
             });
 
@@ -116,6 +117,7 @@ public class SavedArticleAdaptor extends RecyclerView.Adapter<SavedArticleAdapto
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
+                                                    binding.saveBlogBtn.setImageResource(R.drawable.save);
                                                 }
                                             });
                                 }

@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<!--    <color name="red">#ff3838</color>-->
     <color name="red">#eb2f06</color>
     <color name="blue">#17c0eb</color>
     <color name="grey">#f5f6fa</color>
@@ -17,4 +16,5 @@
     <color name="toolbar_color">#6750A4</color>
     <color name="stroke_color">#FFD700</color>
     <color name="edit_button_color">#3c6382</color>
+    <color name="save_button_color">#21005D</color>
 </resources>
