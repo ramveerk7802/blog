@@ -1,6 +1,6 @@
 package com.example.blogapp.Activity;
 
-import static android.os.Build.VERSION_CODES.R;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.blogapp.MainActivity;
-import com.example.blogapp.R;
+
 import com.example.blogapp.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity {
