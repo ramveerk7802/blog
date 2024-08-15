@@ -278,5 +278,13 @@ public class MainActivity extends AppCompatActivity {
         adaptor.setFilteredList(filteredList);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser==null){
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            finish();
+        }
 
+    }
 }

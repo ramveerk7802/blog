@@ -16,11 +16,14 @@ public class LoginActivity extends AppCompatActivity {
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.logInBtn.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignInActivity.class));
+            Intent intent=new Intent(LoginActivity.this, SignInActivity.class);
+            intent.putExtra("logIn",true);
+            startActivity(intent);
             finish();
         });
         binding.registerBtn.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            Intent intent=new Intent(LoginActivity.this, SignInActivity.class);
+            startActivity(intent);
             finish();
         });
     }

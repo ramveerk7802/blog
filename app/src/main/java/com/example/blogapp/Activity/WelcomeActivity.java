@@ -1,5 +1,7 @@
 package com.example.blogapp.Activity;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R..activity_welcome);
 
         new Handler().postDelayed(new Runnable() {
             @Override
