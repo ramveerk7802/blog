@@ -10,13 +10,16 @@ import android.os.Handler;
 
 import com.example.blogapp.MainActivity;
 import com.example.blogapp.R;
+import com.example.blogapp.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity {
+    private ActivityWelcomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R..activity_welcome);
+        binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         new Handler().postDelayed(new Runnable() {
             @Override
