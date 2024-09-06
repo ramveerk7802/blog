@@ -13,31 +13,47 @@
         app:srcCompat="@drawable/blog_bg"
         android:scaleType="centerCrop"
         android:alpha="0.3"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:scaleType="centerCrop"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toTopOf="@+id/design"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/design"
+        app:layout_constraintVertical_bias="0.38"
         app:srcCompat="@drawable/logo" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/appCompatImageView"
+        app:layout_constraintEnd_toEndOf="@id/appCompatImageView"
+        app:layout_constraintTop_toBottomOf="@id/appCompatImageView"
+        android:text="Welcome to Blog Nest"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        app:fontFamily="@font/montserrat_semibold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/design"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
         android:padding="10sp"
         android:text="@string/designBy_1"
         android:textAlignment="center"
-        android:fontFamily="@font/love_ya_like_a_sister"
+        android:fontFamily="@font/montserrat_semibold"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/text1"
+        app:layout_constraintStart_toStartOf="@id/text1"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="20dp"
         />

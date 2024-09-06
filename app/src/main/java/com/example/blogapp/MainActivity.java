@@ -1,10 +1,11 @@
 package com.example.blogapp;
 
+
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -103,9 +104,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id =item.getItemId();
-                if(id==R.id.nav_home){
-                }
-                else if(id==R.id.nav_new_article) {
+
+                 if(id==R.id.nav_new_article) {
                     startActivity(new Intent(MainActivity.this, AddBlogActivity.class));
                 }
                 else if(id==R.id.nav_your_article){
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel model = snapshot.getValue(UserModel.class);
+                assert model != null;
                 if(model.getProfilePic()!=null) {
 //                    Picasso.get().load(model.getProfilePic()).into(binding.appbarMainLayout.profileImg);
                     Picasso.get().load(model.getProfilePic()).into(headerLayoutBinding.headerProfileImg);
@@ -234,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.main_menu_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
+        assert searchView != null;
         searchView.setQueryHint("Search here...");
 
         // change the edit text color
